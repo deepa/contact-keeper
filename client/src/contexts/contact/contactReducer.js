@@ -22,21 +22,21 @@ export default (state, action) => {
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: [action.payload, ...state.contacts],
         loading: false
       };
     case UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map(c =>
-          c.id === action.payload.id ? action.payload : c
+          c._id === action.payload._id ? action.payload : c
         ),
         loading: false
       };
     case DELETE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.filter(c => c.id !== action.payload),
+        contacts: state.contacts.filter(c => c._id !== action.payload),
         loading: false
       };
     case CLEAR_CONTACTS:
