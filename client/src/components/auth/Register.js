@@ -1,6 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AlertContext from '../../contexts/alert/alertContext';
+import AuthContext from '../../contexts/auth/authContext';
 
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors } = authContext;
+
+  useEffect(() => {
+    if (error === 'User aleady exists') {
+      setAlert(error, 'danger');
+      // clearErrors();
+    }
+  }, [error]);
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -14,18 +28,18 @@ const Register = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Register submit');
-    // if (name === '' || email === '' || password === '') {
-    //   setAlert('Please enter all fields', 'danger');
-    // } else if (password !== password2) {
-    //   setAlert('Passwords do not match', 'danger');
-    // } else {
-    //   register({
-    //     name,
-    //     email,
-    //     password
-    //   });
-    // }
+
+    if (name === '' || email === '' || password === '') {
+      setAlert('Please enter all fields', 'danger');
+    } else if (password !== password2) {
+      setAlert('Passwords do not match', 'danger');
+    } else {
+      register({
+        name,
+        email,
+        password
+      });
+    }
   };
 
   return (
