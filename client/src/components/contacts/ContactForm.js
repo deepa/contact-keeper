@@ -64,6 +64,7 @@ const ContactForm = () => {
         placeholder='Email'
         name='email'
         value={email}
+        required
         onChange={onChange}
       />
       <input

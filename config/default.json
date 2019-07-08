@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://deepa:password@turtles-zn0af.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}
